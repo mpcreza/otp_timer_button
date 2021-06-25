@@ -19,6 +19,7 @@ class OtpTimerButton extends StatefulWidget {
   final Color? textColor;
   final Color? loadingIndicatorColor;
   final ButtonType buttonType;
+  final double? radius;
 
   const OtpTimerButton(
       {Key? key,
@@ -31,7 +32,8 @@ class OtpTimerButton extends StatefulWidget {
       this.backgroundColor,
       this.textColor,
       this.loadingIndicatorColor,
-      this.buttonType = ButtonType.elevated_button})
+      this.buttonType = ButtonType.elevated_button,
+      this.radius})
       : super(key: key);
 
   @override
@@ -57,9 +59,8 @@ class _OtpTimerButtonState extends State<OtpTimerButton> {
 
     setState(() {});
 
-    const oneSec = const Duration(seconds: 1);
     _timer = new Timer.periodic(
-      oneSec,
+      Duration(seconds: 1),
       (Timer timer) {
         if (_counter == 0) {
           _state = ButtonState.enable_button;
@@ -124,7 +125,16 @@ class _OtpTimerButtonState extends State<OtpTimerButton> {
             ),
           ],
         );
-        break;
+    }
+  }
+
+  roundedRectangleBorder() {
+    if (widget.radius != null) {
+      return RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(widget.radius!),
+      );
+    } else {
+      return null;
     }
   }
 
@@ -136,7 +146,10 @@ class _OtpTimerButtonState extends State<OtpTimerButton> {
               _state == ButtonState.enable_button ? widget.onPressed : null,
           child: _childBuilder(),
           style: ElevatedButton.styleFrom(
-              primary: widget.backgroundColor, onPrimary: widget.textColor),
+            primary: widget.backgroundColor,
+            onPrimary: widget.textColor,
+            shape: roundedRectangleBorder(),
+          ),
         );
       case ButtonType.text_button:
         return TextButton(
@@ -145,6 +158,7 @@ class _OtpTimerButtonState extends State<OtpTimerButton> {
           child: _childBuilder(),
           style: TextButton.styleFrom(
             primary: widget.backgroundColor,
+            shape: roundedRectangleBorder(),
           ),
         );
       case ButtonType.outlined_button:
@@ -154,6 +168,7 @@ class _OtpTimerButtonState extends State<OtpTimerButton> {
           child: _childBuilder(),
           style: OutlinedButton.styleFrom(
             primary: widget.backgroundColor,
+            shape: roundedRectangleBorder(),
           ),
         );
     }
