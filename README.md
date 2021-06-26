@@ -6,10 +6,12 @@ This is a Flutter package for easy implementation otp timer button.
 
 ## Installation
 
-    Add the following to your pubspec.yaml file:
+Add the following to your pubspec.yaml file:
 
-    dependencies:
-        otp_timer_button: ^1.0.0
+```yaml
+dependencies:
+    otp_timer_button: ^1.0.0
+```
 
 ## Usage
 
