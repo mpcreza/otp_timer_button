@@ -2,7 +2,7 @@
 
 This is a Flutter package for easy implementation otp timer button.
 
-![](screenshots/otp_timer-button.gif)
+![](screenshots/otp_timer_button.gif)   ![](screenshots/otp_timer_button_with_loading.gif)
 
 ## Installation
 
