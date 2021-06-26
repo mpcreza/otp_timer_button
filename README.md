@@ -29,13 +29,9 @@ This is a Flutter package for easy implementation otp timer button.
           body: Center(
             child: OtpTimerButton(
               controller: controller,
-              height: 60,
               onPressed: () {},
-              text: Text(
-                'Resend OTP',
-                style: TextStyle(fontSize: 20),
-              ),
-              duration: 2,
+              text: Text('Resend OTP'),
+              duration: 60,
             ),
           ),
         );
