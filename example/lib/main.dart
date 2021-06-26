@@ -38,15 +38,44 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
       body: Center(
-        child: OtpTimerButton(
-          controller: controller,
-          height: 60,
-          onPressed: () {},
-          text: Text(
-            'Resend OTP',
-            style: TextStyle(fontSize: 20),
-          ),
-          duration: 5,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            OtpTimerButton(
+              controller: controller,
+              height: 60,
+              onPressed: () {},
+              text: Text(
+                'Resend OTP',
+                style: TextStyle(fontSize: 20),
+              ),
+              duration: 2,
+            ),
+            OtpTimerButton(
+              controller: controller,
+              height: 60,
+              onPressed: () {},
+              text: Text(
+                'Resend OTP',
+                style: TextStyle(fontSize: 20),
+              ),
+              duration: 2,
+              backgroundColor: Colors.orange,
+              buttonType: ButtonType.text_button,
+            ),
+            OtpTimerButton(
+              controller: controller,
+              height: 60,
+              onPressed: () {},
+              text: Text(
+                'Resend OTP',
+                style: TextStyle(fontSize: 20),
+              ),
+              duration: 2,
+              backgroundColor: Colors.green,
+              buttonType: ButtonType.outlined_button,
+            ),
+          ],
         ),
       ),
     );
