@@ -29,7 +29,11 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  OtpTimerButtonController controller = OtpTimerButtonController();
+  OtpTimerButtonController blueController = OtpTimerButtonController();
+  OtpTimerButtonController orangeController = OtpTimerButtonController();
+  OtpTimerButtonController greenController = OtpTimerButtonController();
+  OtpTimerButtonController redController = OtpTimerButtonController();
+  OtpTimerButtonController purpleController = OtpTimerButtonController();
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +46,7 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             OtpTimerButton(
-              controller: controller,
+              controller: blueController,
               height: 60,
               onPressed: () {},
               text: Text(
@@ -52,28 +56,60 @@ class _MyHomePageState extends State<MyHomePage> {
               duration: 2,
             ),
             OtpTimerButton(
-              controller: controller,
+              controller: orangeController,
               height: 60,
               onPressed: () {},
               text: Text(
                 'Resend OTP',
                 style: TextStyle(fontSize: 20),
               ),
-              duration: 2,
-              backgroundColor: Colors.orange,
               buttonType: ButtonType.text_button,
+              backgroundColor: Colors.orange,
+              duration: 2,
             ),
             OtpTimerButton(
-              controller: controller,
+              controller: greenController,
               height: 60,
               onPressed: () {},
               text: Text(
                 'Resend OTP',
                 style: TextStyle(fontSize: 20),
               ),
-              duration: 2,
-              backgroundColor: Colors.green,
               buttonType: ButtonType.outlined_button,
+              backgroundColor: Colors.green,
+              duration: 2,
+            ),
+            OtpTimerButton(
+              controller: redController,
+              height: 60,
+              onPressed: () {
+                redController.loading();
+                Future.delayed(Duration(seconds: 2), () {
+                  redController.startTimer();
+                });
+              },
+              text: Text(
+                'Resend OTP',
+                style: TextStyle(fontSize: 20),
+              ),
+              backgroundColor: Colors.red,
+              duration: 2,
+            ),
+            OtpTimerButton(
+              controller: purpleController,
+              height: 60,
+              onPressed: () {
+                purpleController.loading();
+                Future.delayed(Duration(seconds: 2), () {
+                  purpleController.enableButton();
+                });
+              },
+              text: Text(
+                'Resend OTP',
+                style: TextStyle(fontSize: 20),
+              ),
+              backgroundColor: Colors.purple,
+              duration: 2,
             ),
           ],
         ),
