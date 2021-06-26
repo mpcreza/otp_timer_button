@@ -15,24 +15,29 @@ This is a Flutter package for easy implementation otp timer button.
 
 ### Import
 
-    import 'package:otp_timer_button/otp_timer_button.dart';
+```dart
+import 'package:otp_timer_button/otp_timer_button.dart';
+```
 
 ### Simple Example
-    OtpTimerButtonController controller = OtpTimerButtonController();
 
-    @override
-    Widget build(BuildContext context) {
-        return Scaffold(
-          appBar: AppBar(
-            title: Text(widget.title),
-          ),
-          body: Center(
-            child: OtpTimerButton(
-              controller: controller,
-              onPressed: () {},
-              text: Text('Resend OTP'),
-              duration: 60,
-            ),
-          ),
-        );
-    }
+```dart
+OtpTimerButtonController controller = OtpTimerButtonController();
+
+@override
+Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(widget.title),
+      ),
+      body: Center(
+        child: OtpTimerButton(
+          controller: controller,
+          onPressed: () {},
+          text: Text('Resend OTP'),
+          duration: 60,
+        ),
+      ),
+    );
+}
+```
