@@ -44,6 +44,8 @@ Widget build(BuildContext context) {
 }
 ```
 
+### Controller
+
 If you want to wait for the response to the OTP request, you can use the controller:
 
 NOTE: if use controller, auto start timer is disabled on pressed button.
@@ -77,3 +79,9 @@ NOTE: if use controller, auto start timer is disabled on pressed button.
 ```
 
 ![](screenshots/otp_timer_button_wait_for_response.gif)
+
+```dart
+controller.startTimer();
+controller.loading();
+controller.enableButton();
+```
