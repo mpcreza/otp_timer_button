@@ -29,9 +29,6 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  OtpTimerButtonController blueController = OtpTimerButtonController();
-  OtpTimerButtonController orangeController = OtpTimerButtonController();
-  OtpTimerButtonController greenController = OtpTimerButtonController();
   OtpTimerButtonController redController = OtpTimerButtonController();
   OtpTimerButtonController purpleController = OtpTimerButtonController();
 
@@ -46,7 +43,6 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             OtpTimerButton(
-              controller: blueController,
               height: 60,
               onPressed: () {},
               text: Text(
@@ -56,7 +52,6 @@ class _MyHomePageState extends State<MyHomePage> {
               duration: 2,
             ),
             OtpTimerButton(
-              controller: orangeController,
               height: 60,
               onPressed: () {},
               text: Text(
@@ -68,7 +63,6 @@ class _MyHomePageState extends State<MyHomePage> {
               duration: 2,
             ),
             OtpTimerButton(
-              controller: greenController,
               height: 60,
               onPressed: () {},
               text: Text(
@@ -93,6 +87,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 style: TextStyle(fontSize: 20),
               ),
               backgroundColor: Colors.red,
+              loadingIndicatorColor: Colors.red,
+              radius: 30,
               duration: 2,
             ),
             OtpTimerButton(
@@ -102,6 +98,11 @@ class _MyHomePageState extends State<MyHomePage> {
                 purpleController.loading();
                 Future.delayed(Duration(seconds: 2), () {
                   purpleController.enableButton();
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text('Failed to resend code'),
+                    ),
+                  );
                 });
               },
               text: Text(
