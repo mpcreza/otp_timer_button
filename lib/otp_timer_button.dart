@@ -9,16 +9,41 @@ enum ButtonState { enable_button, loading, timer }
 enum ButtonType { elevated_button, text_button, outlined_button }
 
 class OtpTimerButton extends StatefulWidget {
+
+  /// Called when the button is tapped or otherwise activated.
   final VoidCallback? onPressed;
+
+  /// The button text
   final Text text;
+
+  /// the loading indicator
   final ProgressIndicator? loadingIndicator;
+
+  /// Length of the timer in second
   final int duration;
-  final OtpTimerButtonController controller;
+
+  /// Manual control button state [ButtonState]
+  ///
+  /// When controller is not null auto start timer is disabled on pressed button
+  final OtpTimerButtonController? controller;
+
+  /// Height of the button
   final double? height;
+
+  /// Background color of the button
   final Color? backgroundColor;
+
+  /// Color of the text
   final Color? textColor;
+
+  /// Color of the loading indicator
   final Color? loadingIndicatorColor;
+
+  /// Button type
+  /// elevated_button, text_button, outlined_button [ButtonType]
   final ButtonType buttonType;
+
+  /// The radius of the button border
   final double? radius;
 
   const OtpTimerButton(
@@ -27,7 +52,7 @@ class OtpTimerButton extends StatefulWidget {
       required this.text,
       this.loadingIndicator,
       required this.duration,
-      required this.controller,
+      this.controller,
       this.height,
       this.backgroundColor,
       this.textColor,
@@ -49,7 +74,7 @@ class _OtpTimerButtonState extends State<OtpTimerButton> {
   void initState() {
     super.initState();
     _startTimer();
-    widget.controller._addListeners(_startTimer, _loading, _enableButton);
+    widget.controller?._addListeners(_startTimer, _loading, _enableButton);
   }
 
   _startTimer() {
@@ -128,7 +153,7 @@ class _OtpTimerButtonState extends State<OtpTimerButton> {
     }
   }
 
-  roundedRectangleBorder() {
+  _roundedRectangleBorder() {
     if (widget.radius != null) {
       return RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(widget.radius!),
@@ -138,37 +163,46 @@ class _OtpTimerButtonState extends State<OtpTimerButton> {
     }
   }
 
+  _onPressedButton() {
+    if (widget.onPressed != null) {
+      widget.onPressed!();
+    }
+    if (widget.controller == null) {
+      _startTimer();
+    }
+  }
+
   _buildButton() {
     switch (widget.buttonType) {
       case ButtonType.elevated_button:
         return ElevatedButton(
           onPressed:
-              _state == ButtonState.enable_button ? widget.onPressed : null,
+              _state == ButtonState.enable_button ? _onPressedButton : null,
           child: _childBuilder(),
           style: ElevatedButton.styleFrom(
             primary: widget.backgroundColor,
             onPrimary: widget.textColor,
-            shape: roundedRectangleBorder(),
+            shape: _roundedRectangleBorder(),
           ),
         );
       case ButtonType.text_button:
         return TextButton(
           onPressed:
-              _state == ButtonState.enable_button ? widget.onPressed : null,
+              _state == ButtonState.enable_button ? _onPressedButton : null,
           child: _childBuilder(),
           style: TextButton.styleFrom(
             primary: widget.backgroundColor,
-            shape: roundedRectangleBorder(),
+            shape: _roundedRectangleBorder(),
           ),
         );
       case ButtonType.outlined_button:
         return OutlinedButton(
           onPressed:
-              _state == ButtonState.enable_button ? widget.onPressed : null,
+              _state == ButtonState.enable_button ? _onPressedButton : null,
           child: _childBuilder(),
           style: OutlinedButton.styleFrom(
             primary: widget.backgroundColor,
-            shape: roundedRectangleBorder(),
+            shape: _roundedRectangleBorder(),
           ),
         );
     }
@@ -200,14 +234,17 @@ class OtpTimerButtonController {
     this._enableButtonListener = enableButtonListener;
   }
 
+  /// Notify listener to start the timer
   startTimer() {
     _startTimerListener();
   }
 
+  /// Notify listener to show loading
   loading() {
     _loadingListener();
   }
 
+  /// Notify listener to enable button
   enableButton() {
     _enableButtonListener();
   }
