@@ -85,3 +85,26 @@ controller.startTimer();
 controller.loading();
 controller.enableButton();
 ```
+
+### All options
+
+```dart
+OtpTimerButton(
+  controller: controller,
+  height: 60,
+  text: Text(
+    'Resend OTP',
+  ),
+  duration: 60,
+  radius: 30,
+  backgroundColor: Colors.blue,
+  textColor: Colors.white,
+  buttonType: ButtonType.text_button, // or ButtonType.outlined_button
+  loadingIndicator: CircularProgressIndicator(
+    strokeWidth: 2,
+    color: Colors.red,
+  ),
+  loadingIndicatorColor: Colors.red,
+  onPressed: () {},
+),
+```
