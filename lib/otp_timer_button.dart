@@ -9,7 +9,6 @@ enum ButtonState { enable_button, loading, timer }
 enum ButtonType { elevated_button, text_button, outlined_button }
 
 class OtpTimerButton extends StatefulWidget {
-
   /// Called when the button is tapped or otherwise activated.
   final VoidCallback? onPressed;
 
@@ -46,10 +45,13 @@ class OtpTimerButton extends StatefulWidget {
   /// The radius of the button border
   final double? radius;
 
+  final TextStyle? timerTextStyle;
+
   const OtpTimerButton(
       {Key? key,
       required this.onPressed,
       required this.text,
+      this.timerTextStyle,
       this.loadingIndicator,
       required this.duration,
       this.controller,
@@ -140,14 +142,14 @@ class _OtpTimerButtonState extends State<OtpTimerButton> {
           mainAxisAlignment: MainAxisAlignment.center,
           mainAxisSize: MainAxisSize.min,
           children: [
-            widget.text,
+            Text(
+              '$_counter',
+              style: widget.timerTextStyle,
+            ),
             SizedBox(
               width: 10,
             ),
-            Text(
-              '$_counter',
-              style: widget.text.style,
-            ),
+            widget.text,
           ],
         );
     }
