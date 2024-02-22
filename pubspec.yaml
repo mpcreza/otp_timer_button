@@ -1,10 +1,10 @@
 name: otp_timer_button
 description: This package for easy implementation otp timer button which will be enabled after specified time.
-version: 1.1.0
+version: 1.1.1
 homepage: https://github.com/mpcreza/otp_timer_button
 
 environment:
-  sdk: ">=2.12.0 <3.0.0"
+  sdk: ">=3.0.0 <4.0.0"
   flutter: ">=1.17.0"
 
 dependencies:
