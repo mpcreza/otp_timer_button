@@ -10,7 +10,7 @@ Add the following to your pubspec.yaml file:
 
 ```yaml
 dependencies:
-    otp_timer_button: ^1.1.0
+    otp_timer_button: ^1.1.1
 ```
 
 ## Usage

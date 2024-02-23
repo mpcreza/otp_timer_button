@@ -9,7 +9,6 @@ enum ButtonState { enable_button, loading, timer }
 enum ButtonType { elevated_button, text_button, outlined_button }
 
 class OtpTimerButton extends StatefulWidget {
-
   /// Called when the button is tapped or otherwise activated.
   final VoidCallback? onPressed;
 
@@ -180,8 +179,8 @@ class _OtpTimerButtonState extends State<OtpTimerButton> {
               _state == ButtonState.enable_button ? _onPressedButton : null,
           child: _childBuilder(),
           style: ElevatedButton.styleFrom(
-            primary: widget.backgroundColor,
-            onPrimary: widget.textColor,
+            foregroundColor: widget.textColor,
+            backgroundColor: widget.backgroundColor,
             shape: _roundedRectangleBorder(),
           ),
         );
@@ -191,7 +190,7 @@ class _OtpTimerButtonState extends State<OtpTimerButton> {
               _state == ButtonState.enable_button ? _onPressedButton : null,
           child: _childBuilder(),
           style: TextButton.styleFrom(
-            primary: widget.backgroundColor,
+            foregroundColor: widget.backgroundColor,
             shape: _roundedRectangleBorder(),
           ),
         );
@@ -201,7 +200,7 @@ class _OtpTimerButtonState extends State<OtpTimerButton> {
               _state == ButtonState.enable_button ? _onPressedButton : null,
           child: _childBuilder(),
           style: OutlinedButton.styleFrom(
-            primary: widget.backgroundColor,
+            foregroundColor: widget.backgroundColor,
             shape: _roundedRectangleBorder(),
           ),
         );
